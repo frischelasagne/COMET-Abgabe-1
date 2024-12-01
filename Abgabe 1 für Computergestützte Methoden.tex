@@ -1,0 +1,170 @@
+\documentclass{article}
+
+\usepackage{graphicx} 
+\usepackage{amsmath}
+\usepackage{parskip} 
+\usepackage[utf8]{inputenc} 
+\usepackage[ngerman]{babel} 
+\usepackage[T1]{fontenc}   
+\usepackage{url} 
+\usepackage{hyperref}
+
+\title{Abgabe 1 für Computergestützte Methoden}
+\author{Gruppe 98, Mario Westermann, Jan Dettmer, Joel Acar}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Der zentrale Grenzwertsatz}
+
+Der zentrale Grenzwertsatz (ZGS) ist ein fundamentales Resultat der Wahrscheinlichkeitstheorie, 
+das die Verteilung von Summen unabhängiger, identisch verteilter (\textit{i.i.d.}) Zufallsvariablen (ZV) beschreibt.
+Er besagt, dass unter bestimmten Voraussetzungen die Summe einer großen Anzahl solcher ZV
+annähernd normalverteilt ist, unabhängig von der Verteilung der einzelnen ZV. Dies ist besonders nützlich, da die Normalverteilung gut untersucht und mathematisch handhabbar ist.
+
+\subsection{Aussage}
+
+Sei \( X_1, X_2, \ldots, X_n \) eine Folge von \textit{i.i.d.} ZV mit dem Erwartungswert \(\mu = \mathbb{E}(X_i)\) und der Varianz \(\sigma^2 = \text{Var}(X_i)\), wobei \( 0 < \sigma^2 < \infty \) gelte. Dann konvergiert die standardisierte Summe \( Z_n \) dieser ZV für \( n \to \infty \) in Verteilung gegen eine Standardnormalverteilung: \footnote{\label{footnote-gwz}Der zentrale Grenzwertsatz hat verschiedene Verallgemeinerungen. Eine davon ist der \textbf{Lindeberg-Feller-Zentrale-Grenzwertsatz} \hyperlink{Klenke2013}{[1, Seite 328]}, der schwächere Bedingungen an die Unabhängigkeit und die identische Verteilung der ZV stellt.}
+
+\[
+Z_n = \frac{\sum_{i=1}^n X_i - n\mu}{\sigma \sqrt{n}} \overset{d}{\to} \mathcal{N}(0,1). \tag{1} \label{eq:formel1}
+\]
+
+Das bedeutet, dass für große \( n \) die Summe der ZV näherungsweise normalverteilt ist mit Erwartungswert \( n\mu \) und Varianz \( n\sigma^2 \):
+
+\[
+\sum_{i=1}^n X_i \sim \mathcal{N}(n\mu, n\sigma^2). \tag{2} \label{eq:formel2}
+\]
+
+\subsection{Erklärung der Standardisierung}
+
+Um die Summe der ZV in eine Standardnormalverteilung zu transformieren, subtrahiert man den Erwartungswert \( n\mu \) und teilt durch die Standardabweichung \( \sigma\sqrt{n} \). Dies führt zu der obigen Formel~\eqref{eq:formel1}. Die Darstellung~\eqref{eq:formel2} ist für \( n \to \infty \) nicht wohldefiniert.
+
+\subsection{Anwendungen}
+Der ZGS wird in vielen Bereichen der Statistik und der Wahrscheinlichkeits theorie angewendet. Typische Beispiele sind: 
+\begin{itemize}
+    \item Schätzung von Mittelwerten aus Stichproben: Der ZGS ermöglicht es, Stichprobenmittelwerte als annähernd normalverteilt zu behandeln.
+    \item Signifikanztests in der Statistik: Viele Tests basieren auf der Annahme, dass Stichprobenstatistiken normalverteilt sind.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Bearbeitung zur Aufgabe 1\\Datenhaltung und Aufbereitung\\}
+
+Der Datensatz enthält allgemeine Informationen zum Fahrradverleih sowie Wetterdaten für den Zeitraum vom 1. Januar 2023 bis zum 31. Dezember 2023. Jede Gruppe hat dabei einen individuellen Datensatz erhalten. Die Attributnamen sind in Zelle \texttt{A1} aufgeführt: \texttt{group}, \texttt{station}, \texttt{date}, \texttt{day of year}, \texttt{day of week}, \texttt{month of year}, \texttt{precipitation}, \texttt{windspeed}, \texttt{min temperature}, \texttt{average temperature}, \texttt{max temperature}, \texttt{count}.
+
+Unser Fokus liegt auf der Analyse aller relevanten Informationen zur uns zugewiesenen Station \emph{"Washington St \& Gansevoort St"} (Gruppe 98). Besonders interessieren uns die Attribute \textbf{Datum}, \textbf{Durchschnittstemperatur}, \textbf{Maximaltemperatur} und \textbf{Minimaltemperatur}.
+
+Bei der Analyse der Datensätze wird deutlich, dass die Anzahl der ausgeliehenen Fahrräder stark von der Wetterlage beeinflusst wird. Während der Prüfung der Datenintegrität fiel jedoch auf, dass in den Spalten \texttt{count} und \texttt{average temperature} fehlende Werte vorhanden sind.
+
+
+
+\subsection{Berechnung der höchsten mittleren Temperatur\\in Grad Celsius mit einer Tabellenkalkulation\\}
+
+\includegraphics[width=1.0\linewidth]{image.png} 
+\par \textbf{Abbildung 1:} Pivot Tabelle 1
+\newline
+
+\includegraphics[width=1.0\linewidth]{image 1.png}
+\par \textbf{Abbildung 2:} Pivot Tabelle 2
+\newline 
+
+Um die höchste mittlere Temperatur zu berechnen, haben wir die Daten für die Station 98 -Washington St und Gansevoort Station- isoliert. Wir haben die Spalte ´Summe von average temperature´ in der Pivot-Tabelle betrachtet. Die Gesamtsummen sind in die dazugehörigen Monaten unterteilt. Durch Doppelklick auf die Zelle ´Summe der  average temperature´ öffneten sich die Wertfeldeinstellungen. Dort wählten wir, dass die Wertefelder nach dem maximalen Wert zusammengefasst werden sollen. Jetzt wird die höchste average Temperatur für jeden Monat angezeigt. Das Gesamtergebnis zeigt die höchste mittlere Temperatur über alle Monate. Da die Temperaturen aktuell noch in Fahrenheit angegeben sind ist eine Umrechnung in Grad Celsius erforderlich. Die Umrechnungsformel von Fahrenheit in Grad Celsius lautet: $$\text{Celsius} = (\text{Fahrenheit} - 32) \times \frac{5}{9}$$
+Die höchste mittlere Temperatur liegt bei 28,3°C.\\
+\newpage
+\subsection{Datenbank-Schema entwerfen (1. und 2. Normalform beachten)\\}
+
+1.Normalform = In nicht-atomarer Attribute getrennt
+
+\includegraphics[width=1.0\linewidth]{Pivot .png}
+\\
+
+2.Normalform = Auftrennung  in  mehrere  Tabellen  und  Fremdschlüssel-Beziehungen  mit passenden Abhängigkeiten\\
+Primärschlüssel sind Grün. \\
+Schlüsselattribute sind Blau.
+
+\includegraphics[width=1.0\linewidth]{Pivot1.png}
+\\
+
+\includegraphics[width=1.0\linewidth]{Pivot2.png}
+\\
+
+\includegraphics[width=1.0\linewidth]{Pivot3.png}
+\\
+
+\includegraphics[width=1.0\linewidth]{Pivot4.png}
+\\
+
+\includegraphics[width=1.0\linewidth]{Pivot5.png}
+
+
+\subsection{Umsetzung des Schemas in SQL (DDL) und Import der zugeordneten Daten als CSV.\\}
+
+\includegraphics[width=0.8\linewidth]{Sql1.png}
+\par \textbf{Abbildung 3:} SQL 1
+
+\includegraphics[width=0.8\linewidth]{SQL2.png}
+\par \textbf{Abbildung 4:} SQL 2
+
+Während unseres Arbeitsprozesses war es nicht vonnöten, ein DDL-Skript zu erstellen, um die Datenbank zu erzeugen. Der Grund dafür ist, dass der verwendetet Online-SQL-Editor so konfiguriert ist, dass er automatisch Tabellen erstellt.
+
+Hier sind dennoch die allgemeinen Befehle des DDL-Teils:
+
+\begin{itemize}
+    \item \textbf{CREATE DATABASE} - Datenbank erzeugen
+    \item \textbf{ALTER DATABASE} - Datenbank modifizieren
+    \item \textbf{CREATE INDEX} - Index erzeugen
+    \item \textbf{DROP INDEX} - Index löschen
+\end{itemize}
+
+\subsection{Formulierung einer SQL-Abfrage, um die höchste mittlere Temperatur in Grad Celsius aus den
+ Ihrer Gruppe zugeordneten Daten zu ermitteln\\}
+
+\includegraphics[width=1.0\linewidth]{Nr4 1.png}
+\par \textbf{Abbildung 5:} Generierung von Zusatzpalten
+\\
+
+\includegraphics[width=1.0\linewidth]{Nr.4 2.png}
+\par \textbf{Abbildung 6:} Abfragung vom Code
+\\
+
+\begin{thebibliography}{99}
+
+\bibitem{Klenke2013} 
+\hypertarget{Klenke2013} Achim Klenke. \emph{Wahrscheinlichkeitstheorie}. Springer, 3. Auflage, 2013.
+
+\bibitem{Overleaf} 
+\href{https://de.overleaf.com/}{https://de.overleaf.com/}
+
+\bibitem{SQLiteOnline} 
+\href{https://sqliteonline.com/}{https://sqliteonline.com/}
+
+\bibitem{ProgramizSQLCompiler} 
+\href{https://www.programiz.com/sql/online-compiler/}{https://www.programiz.com/sql/online-compiler/}
+
+\bibitem{BikeSharingData} 
+Bike sharing data (with NAs).
+
+\bibitem{Abgabe1} 
+Abgabe 1 LaTeX Vorlage.
+
+\end{thebibliography}
+
+
+\end{document}
